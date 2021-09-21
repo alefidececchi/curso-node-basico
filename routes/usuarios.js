@@ -10,14 +10,13 @@ const {
 
 const router = Router();
 
-router.get('/', usuariosGet);
+router.get('/:id/:dni', usuariosGet);
 
 router.post('/', usuariosPost);
 
-router.put('/', usuariosPut);
 router.put('/:id', usuariosPut);
 
-router.delete('/', usuariosDelete);
+router.delete('/delete/:id', usuariosDelete);
 
 router.patch('/', usuariosPatch);
 

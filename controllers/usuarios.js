@@ -1,8 +1,15 @@
-const { response } = require('express'); //para que javascript identifique y añada funciones/métodos automáticamente a req/res
+const { response, request } = require('express'); //para que javascript identifique y añada funciones/métodos automáticamente a req/res
 
-const usuariosGet = (req, res = response) => {
+const usuariosGet = (req = request, res = response) => {
+    
+    const { q, nombre = 'no name' } = req.query;
+    const params = req.params;
+
     res.json({
-        msg: 'get API from controller'
+        msg: 'get API from controller',
+        q,
+        nombre,
+        params
     });
 }
 
@@ -16,7 +23,7 @@ const usuariosPost = (req, res) => {
     });
 }
 
-const usuariosPut = (req, res) => {
+const usuariosPut = (req = request, res) => {
 
     const id = req.params.id;
 
@@ -32,9 +39,13 @@ const usuariosPatch = (req, res) => {
     });
 }
 
-const usuariosDelete = (req, res) => {
+const usuariosDelete = (req = request, res = response) => {
+
+    const { id } = req.params
+
     res.json({
-        msg: 'delete API from controller'
+        msg: 'delete API from controller',
+        id
     });
 }
 
